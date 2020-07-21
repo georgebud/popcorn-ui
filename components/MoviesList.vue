@@ -13,10 +13,10 @@
         :inset="item.inset"
       ></v-divider>
 
-      <v-list-item v-else :key="item.itemTitle" @click="">
-        <v-list-item-itemImage>
+      <v-list-item v-else :key="item.itemTitle">
+        <v-list-item-avatar size=80>
           <v-img :src="item.itemImage"></v-img>
-        </v-list-item-itemImage>
+        </v-list-item-avatar>
 
         <v-list-item-content>
           <v-list-item-title v-html="item.itemTitle"></v-list-item-title>

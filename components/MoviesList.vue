@@ -15,11 +15,15 @@
 
       <v-list-item v-else :key="item.itemTitle">
         <v-list-item-avatar size="80">
-          <v-img :src="item.itemImage"></v-img>
+          <v-btn :href="item.itemUrl" target="_blank">
+            <v-img :src="item.itemImage"></v-img>
+          </v-btn>
         </v-list-item-avatar>
 
         <v-list-item-content>
-          <v-list-item-title v-html="item.itemTitle"></v-list-item-title>
+          <v-btn :href="item.itemUrl" target="_blank">
+            <v-list-item-title v-html="item.itemTitle"></v-list-item-title>
+          </v-btn>
           <v-list-item-subtitle
             v-html="item.itemDescription"
           ></v-list-item-subtitle>

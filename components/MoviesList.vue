@@ -81,7 +81,11 @@ export default {
     // ];
 
     axios
-      .get("http://localhost:8000/movies")
+      .get("http://localhost:8000/movies", {
+            headers: {
+              'Access-Control-Allow-Origin': 'http://localhost:8000',
+            }
+          })
       .then(response =>
         // JSON responses are automatically parsed.
         {
@@ -90,8 +94,17 @@ export default {
           this.items = response.data;
         }
       )
-      .catch(e => {
-        this.errors.push(e);
+      .catch(function (error) {
+          if (error.response) {
+            console.log(error.response.headers);
+          } 
+          else if (error.request) {
+              console.log(error.request);
+          } 
+          else {
+            console.log(error.message);
+          }
+        console.log(error.config);
       });
   }
 };

@@ -12,7 +12,6 @@
         :key="index"
         :inset="item.inset"
       ></v-divider>
-
       <v-list-item v-else :key="item.itemTitle">
         <v-list-item-avatar size="80">
           <v-btn :href="item.itemUrl" target="_blank">
@@ -22,7 +21,10 @@
 
         <v-list-item-content>
           <v-btn :href="item.itemUrl" target="_blank">
-            <v-list-item-title v-html="item.itemTitle"></v-list-item-title>
+            <v-list-item-title>
+              {{ item.itemTitle }}
+              ({{ item.itemSource }})</v-list-item-title
+            >
           </v-btn>
           <v-list-item-subtitle
             v-html="item.itemDescription"
@@ -82,10 +84,10 @@ export default {
 
     axios
       .get("http://localhost:8000/movies", {
-            headers: {
-              'Access-Control-Allow-Origin': 'http://localhost:8000',
-            }
-          })
+        headers: {
+          "Access-Control-Allow-Origin": "http://localhost:8000"
+        }
+      })
       .then(response =>
         // JSON responses are automatically parsed.
         {
@@ -94,16 +96,14 @@ export default {
           this.items = response.data;
         }
       )
-      .catch(function (error) {
-          if (error.response) {
-            console.log(error.response.headers);
-          } 
-          else if (error.request) {
-              console.log(error.request);
-          } 
-          else {
-            console.log(error.message);
-          }
+      .catch(function(error) {
+        if (error.response) {
+          console.log(error.response.headers);
+        } else if (error.request) {
+          console.log(error.request);
+        } else {
+          console.log(error.message);
+        }
         console.log(error.config);
       });
   }
